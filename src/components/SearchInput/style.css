@@ -1,0 +1,60 @@
+.inputForm {
+  background: var(--white);
+  border-radius: 2rem;
+  box-shadow: 0px 38px 343px rgba(15, 10, 78, 0.07),
+    0px 22.6336px 143.297px rgba(15, 10, 78, 0.0503198),
+    0px 19.3321px 76.6135px rgba(15, 10, 78, 0.0417275),
+    0px 16.4171px 42.9489px rgba(15, 10, 78, 0.035),
+    0px 12.3736px 22.8099px rgba(15, 10, 78, 0.0282725),
+    0px 6.9046px 9.49169px rgba(15, 10, 78, 0.0196802);
+}
+
+.SearchLabel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--primary);
+  padding: 10px 15px;
+  gap: 10px;
+}
+.SearchInput {
+  appearance: none;
+  border: none;
+  background: transparent;
+  outline: none;
+  color: var(--primary);
+  width: 100%;
+}
+.SearchInput::placeholder {
+  color: var(--primary);
+  opacity: 0.5;
+}
+.SearchIcon {
+  background: url("../../assets/icons/Search.svg") no-repeat center;
+  object-fit: cover;
+  border: none;
+  cursor: pointer;
+}
+
+.SearchIcon.normal {
+  --size: 1.5rem;
+  width: var(--size);
+  height: var(--size);
+}
+.inputForm.normal {
+  min-width: 17.5rem;
+}
+.SearchInput.normal {
+  font-size: 1rem;
+}
+
+.SearchIcon.small {
+  --size: 1rem;
+  background-image: url('../../assets/icons/Search-small.svg');
+}
+.inputForm.small {
+  min-width: 14rem;
+}
+.SearchInput.small {
+  font-size: 12px;
+}
