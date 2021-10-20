@@ -2,15 +2,16 @@ import { useParams } from "react-router";
 import Card from "../../components/CardMovie/Card";
 import Navbar from "../../components/NavBar/navbar";
 import Subtitle from "../../components/Subtitle";
-import useMovieStore from '../../zustand/stores/movie'
-import shallow from "zustand/shallow"
+import useMovieStore from "../../zustand/stores/movie";
+import shallow from "zustand/shallow";
 
-import './style.css'
+import "./style.css";
 import { useEffect } from "react";
+import Loading from "../../components/Loading";
+import Error from "../../components/Error";
 
 export default function () {
-
-  const {name, idCategory} = useParams();  
+  const { name, idCategory } = useParams();
 
   function getDataFromStore(state) {
     return {
@@ -22,12 +23,17 @@ export default function () {
     };
   }
 
-  const {getMovies, /* movies, */ isLoading, hasError, errorMessage } = useMovieStore(getDataFromStore, shallow)
+  const { getMovies, movies, isLoading, hasError, errorMessage } =
+    useMovieStore(getDataFromStore, shallow);
 
   useEffect(() => {
-    // getMovies(name).catch(console.log)
-  }, [])
-
+    if (name) {
+      getMovies(name).catch(console.log);
+    }
+    if (idCategory) {
+      getMovies(idCategory, 'category').catch(console.log); 
+    }
+  }, []);
 
   const getCardProps = (movie) => {
     return {
@@ -37,33 +43,29 @@ export default function () {
       title: movie.original_title,
       description: movie.popularity,
       id: movie.id,
-      iconDescription: true
+      iconDescription: true,
     };
-  }
+  };
 
-  const movies = {
-    type: "movie",
-    img: 'https://image.tmdb.org/t/p/original/pgqgaUx1cJb5oZQQ5v0tNARCeBp.jpg',
-    forAdults: false,
-    title: 'kong',
-    description: '125.522',
-    id: '8855',
-    iconDescription: true
+  if (hasError) {
+    return (
+      <Error message={errorMessage}/>
+    )
   }
 
   return (
     <div className="SearchResultContainer">
       <Navbar />
-      <Subtitle content={name} />      
-      <section className="SearchResults">
-        {<Card key={movies.id} {...movies}/>}
-      </section>
+      <Subtitle content={name} />
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <section className="SearchResults">
+          {movies?.map((movie) => (
+            <Card key={movie.id} {...getCardProps(movie)} />
+          ))}
+        </section>
+      )}
     </div>
   );
 }
-
-/**
- *         { movies?.map(movie => 
-          <Card key={movie.id} {...getCardProps(movie)} />
-        )}
- */

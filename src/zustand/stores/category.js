@@ -1,5 +1,18 @@
-import create from "zustand/vanilla";
+import create from "zustand";
 import callApi, { getHeaders } from "../../api";
+
+const filterCategories = (categories) => {
+  const myCategories = [
+    "Action",
+    "Adventure",
+    "Animation",
+    "Comedy",
+    "Music",
+    "Horror",
+  ];
+
+  return categories.filter((category) => myCategories.includes(category.name));
+};
 
 const useCategoryStore = create((set) => ({
   getCategories: async () => {
@@ -8,16 +21,15 @@ const useCategoryStore = create((set) => ({
         isLoading: false,
         errorMessage: "",
         hasError: false,
-      })
+      });
 
       const params = {
-        url: 'https://advanced-movie-search.p.rapidapi.com/genre/movie/list',
-        headers: getHeaders()
-      }
+        url: "https://advanced-movie-search.p.rapidapi.com/genre/movie/list",
+        headers: getHeaders(),
+      };
 
-      const categories = await callApi(params)
-      set({categories: categories.genres})
-
+      const categories = await callApi(params);
+      set({ categories: filterCategories(categories.genres) });
     } catch (error) {
       set({
         pokemonDetail: {},
@@ -34,3 +46,5 @@ const useCategoryStore = create((set) => ({
   errorMessage: "",
   hasError: false,
 }));
+
+export default useCategoryStore;

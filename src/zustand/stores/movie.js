@@ -58,7 +58,7 @@ const useMovieStore = create(set => ({
 
     } catch (error) {
       set({
-        movieDetail: [],
+        movieDetail: {},
         isLoading: true,
         errorMessage: "unKnow error 😫",
         hasError: true,
@@ -68,7 +68,7 @@ const useMovieStore = create(set => ({
     }
   },
   movies: [],
-  movieDetail: [],
+  movieDetail: {},
   isLoading: false,
   errorMessage: "",
   hasError: false,

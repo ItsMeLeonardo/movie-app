@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import '../style.css'
 
 export default function Card(props) {
   const { type, img, forAdults, title, description, id, iconDescription } = props;
