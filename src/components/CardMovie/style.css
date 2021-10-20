@@ -1,0 +1,209 @@
+/* ========== Default ========== */
+.cardContainer {
+  width: 100%;
+}
+.card {
+  position: relative;
+  cursor: pointer;
+}
+.card::before {
+  content: '';
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(250, 250, 250, 0) 0%,
+    rgba(3, 7, 16, 0) 0.01%,
+    #030710 120%
+  );
+  z-index: 1;
+}
+
+.cardTitle,
+.cardDescription,
+.cardImage,
+.cardIcon {
+  position: absolute;
+}
+.cardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+.cardTitle {
+  color: var(--white);
+}
+.cardDescription {
+  color: var(--gray);
+}
+.cardTitle,
+.cardDescription,
+.cardIcon {
+  z-index: 10;
+}
+
+/* ========== for 'popular' movie so big ========== */
+.cardContainer.popular {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card.popular {
+  width: 559px;
+  height: 237px;
+  border-radius: 20px;
+  box-shadow: 0px 104px 263px rgba(6, 10, 39, 0.07),
+    0px 43.4487px 96.1917px rgba(6, 10, 39, 0.0453436),
+    0px 23.2298px 57.0231px rgba(6, 10, 39, 0.0321792),
+    0px 13.0224px 36.9982px rgba(6, 10, 39, 0.0220127),
+    0px 6.91611px 22.9409px rgba(6, 10, 39, 0.013521),
+    0px 2.87795px 11.095px rgba(6, 10, 39, 0.00622122);
+}
+.cardTitle.popular {
+  font-size: 2rem;
+  font-weight: 900;
+  letter-spacing: 0.02rem;
+  left: 1.25rem;
+  bottom: 3.25rem;
+}
+.cardDescription.popular {
+  font-size: 14px;
+  left: 1.25rem;
+  bottom: 2rem;
+}
+
+/* ========== for categories ========== */
+.cardContainer.category {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.card.category {
+  border-radius: 1rem;
+  width: 125px;
+  height: 130px;
+}
+.cardTitle.category {
+  font-size: 1rem;
+  font-weight: 800;
+  bottom: 1rem;
+  left: 1rem;
+}
+.card.category::before {
+  --size: 60px;
+  content: "";
+  position: absolute;
+  width: var(--size);
+  height: var(--size);
+  left: 2rem;
+  bottom: -0.5rem;
+  filter: blur(30px);
+  background: transparent;
+  transition: background 0.5s ease;
+  z-index: -1;
+}
+
+.card:hover.card.category::before {
+  background: transparent;
+}
+
+/* shadow for each category*/
+.card.category[data-title="action"]::before {
+  background: rgba(241, 104, 33, 0.6);
+}
+.card.category[data-title="action"] {
+  background: url("../../assets/images/action-thumbnail.webp");
+}
+
+.card.category[data-title="adventure"]::before {
+  background: rgba(93, 134, 196, 0.6);
+}
+.card.category[data-title="adventure"] {
+  background: url("../../assets/images/adventure-thumbnail.webp");
+}
+
+.card.category[data-title="animation"]::before {
+  background: rgba(250, 185, 91, 0.6);
+}
+.card.category[data-title="animation"] {
+  background: url("../../assets/images/animation-thumbnail.webp");
+}
+
+.card.category[data-title="comedy"]::before {
+  background: rgba(135, 32, 238, 0.6);
+}
+.card.category[data-title="comedy"] {
+  background: url("../../assets/images/comedy-thumbnail.webp");
+}
+
+.card.category[data-title="music"]::before {
+  background: rgba(49, 166, 8, 0.6);
+}
+.card.category[data-title="music"] {
+  background: url("../../assets/images/music-thumbnail.webp");
+}
+
+.card.category[data-title="horror"]::before {
+  background: rgba(10, 8, 107, 0.6);
+}
+.card.category[data-title="horror"] {
+  background: url("../../assets/images/horro-thumbnail.webp");
+}
+
+/* ========== card to movie result ========== */
+.card.movie {
+  width: 196px;
+  height: 242px;
+  border-radius: 15px;
+  display: flex;
+  overflow: hidden;
+  transition: transform .5s ease;
+}
+.card.movie:hover {
+  transform: scale(1.05); 
+}
+
+.cardContainer.movie {
+  background: linear-gradient(
+    180deg,
+    rgba(250, 250, 250, 0) 0%,
+    rgba(3, 7, 16, 0) 0.01%,
+    #030710 100%
+  );
+}
+.cardIcon.movie {
+  --size: 2.5rem;
+  width: var(--size);
+  height: var(--size);
+  backdrop-filter: blur(20px);
+  background: url("../../assets/icons/Adult-icon.svg") no-repeat center,
+    rgba(3, 7, 16, 0.5);
+  border-radius: 50%;
+  object-fit: cover;
+  right: 0.8rem;
+  top: 0.8rem;
+}
+.cardTitle.movie {
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 0.02rem;
+  left: 1rem;
+  bottom: 3rem;
+}
+.cardDescription.movie {
+  font-size: 14px;
+  left: .5rem;
+  bottom: .25rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.iconDescription {
+  --size: 2.5rem;
+  background: url("../../assets/icons/Users.svg") center no-repeat;
+  object-fit: cover;
+  width: var(--size);
+  height: var(--size);
+}

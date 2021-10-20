@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import "./style.css";
 
-export default function Button({ type, needIcon, location }) {
+export default function Button({ content, type, needIcon, location }) {
   return (
     <Link to={`/${location}`} href="#" className={`btn btn${type}`}>
-      Go to Home
+      {content}
       {needIcon && <i className="btnIcon"></i>}
     </Link>
   );

@@ -6,7 +6,10 @@ export default function SearchInput({ size = "normal" }) {
   const [searchValue, setSearchValue] = useState('')
 
   const handleSearchChange = ({target: {value}}) => setSearchValue(value) 
-  const handleFormSubmit = (event) => event.preventDefault()  
+  const handleFormSubmit = (event) => {
+    event.preventDefault()
+    window.location.href = `/byName/${searchValue}`
+  }
 
   return (
     <form className={`inputForm ${size}`} onSubmit={handleFormSubmit}>

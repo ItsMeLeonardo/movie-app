@@ -30,5 +30,7 @@
 }
 .logoIcon.small {
   --size: 24px;
+  width: var(--size);
+  height: var(--size);
   background: url('../../assets/images/logo-small.webp') no-repeat center;
 }

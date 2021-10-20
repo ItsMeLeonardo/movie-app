@@ -1,5 +1,7 @@
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import Detail from "../views/Details";
 import Home from "../views/Home";
+import SearchResults from "../views/SearchResults";
 import Start from "../views/Start";
 
 export default function Routes() {
@@ -15,20 +17,16 @@ export default function Routes() {
           <Home/>
         </Route>
 
-        <Route path="/category/:id" exact>
-
+        <Route path="/byCategory/:idCategory" exact>
+          <SearchResults/>
         </Route>
 
-        <Route path="/search/:name" exact>
-
+        <Route path="/byName/:name" exact>
+          <SearchResults/>
         </Route>
 
         <Route path="/movie/:id" exact>
-
-        </Route>
-
-        <Route>
-
+          <Detail/>
         </Route>
 
       </Switch>

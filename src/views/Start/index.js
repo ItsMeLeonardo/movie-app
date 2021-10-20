@@ -6,11 +6,11 @@ import "./style.css";
 
 export default function Start() {
   return (
-    <>
+    <main className="mainContainer">
       <Logo/>
       <SearchInput/>
       <span className="smallTxt">Write the title of your movie</span>
-      <Button type="Primary" needIcon={true} location="home"/>
-    </>
+      <Button content="Go to Home" type="Primary" needIcon={true} location="home"/>
+    </main>
   )
 } 

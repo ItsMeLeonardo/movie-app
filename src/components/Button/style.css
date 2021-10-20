@@ -16,18 +16,39 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: box-shadow .3s ease-in;
 }
 
 .btn:hover .btnIcon {
   transform: translateX(.15rem)
 }
+.btn:hover {
+  box-shadow: 0 0 0 transparent;
+}
 
+/* ========== primary ========== */
 .btnPrimary {
   background: var(--primary);
   color: var(--white);
   box-shadow: 0px 8px 16px rgba(26, 50, 99, 0.16);
-  transition: box-shadow .3s ease-in;
 }
-.btnPrimary:hover {
-  box-shadow: 0 0 0 transparent;
+
+/* ========== Secondary ========== */
+.btnSecondary {
+  background: var(--secondary);
+  color: var(--white);
+  box-shadow: 0px 8px 16px hsla(20, 88%, 54%, 0.16);
 }
+
+/* ========== White ========== */
+.btnWhite {
+  background: var(--white);
+  color: var(--secondary);
+  box-shadow: 0px 1rem 2rem hsla(21, 80%, 8%, 0.1);
+}
+
+.btnSecondary,.btnWhite {
+  padding: .8rem 1.5rem;
+}
+
+

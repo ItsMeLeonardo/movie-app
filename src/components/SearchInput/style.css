@@ -50,10 +50,12 @@
 
 .SearchIcon.small {
   --size: 1rem;
+  width: var(--size);
+  height: var(--size);
   background-image: url('../../assets/icons/Search-small.svg');
 }
 .inputForm.small {
-  min-width: 14rem;
+  min-width: 14.5rem;
 }
 .SearchInput.small {
   font-size: 12px;

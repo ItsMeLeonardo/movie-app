@@ -1,0 +1,8 @@
+.subtitle {
+  display: block;
+  width: 100%;
+  text-align: start;
+  color: var(--primary);
+  font-size: 20px;
+  font-weight: bold;
+}
