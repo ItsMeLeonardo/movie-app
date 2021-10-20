@@ -17,7 +17,7 @@ export default function Routes() {
           <Home/>
         </Route>
 
-        <Route path="/byCategory/:idCategory" exact>
+        <Route path="/byCategory/:idCategory/:nameCategory" exact>
           <SearchResults/>
         </Route>
 

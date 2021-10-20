@@ -40,13 +40,20 @@ export default function Home() {
         type="popular"
         img={movieDetail.backdrop_path}
         title={movieDetail.original_title}
-        description={movieDetail.overview}
+        description={movieDetail.overview}  
+        id={movieDetail.id}
       />
 
       <Subtitle content="Categories" />
       <div className="contentCategories">
         {categories?.map((category) => (
-          <Card type="category" title={category.name} />
+          <Card
+            key={category.id}
+            type="category"
+            title={category.name}
+            id={category.id}
+            nameCategory={category.name}
+          />
         ))}
       </div>
     </>

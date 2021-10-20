@@ -10,8 +10,8 @@ import { useEffect } from "react";
 import Loading from "../../components/Loading";
 import Error from "../../components/Error";
 
-export default function () {
-  const { name, idCategory } = useParams();
+export default function SearchResults() {
+  const { name, idCategory, nameCategory } = useParams();
 
   function getDataFromStore(state) {
     return {
@@ -30,7 +30,7 @@ export default function () {
     if (name) {
       getMovies(name).catch(console.log);
     }
-    if (idCategory) {
+    if (idCategory && nameCategory) {
       getMovies(idCategory, 'category').catch(console.log); 
     }
   }, []);
@@ -56,13 +56,13 @@ export default function () {
   return (
     <div className="SearchResultContainer">
       <Navbar />
-      <Subtitle content={name} />
+      <Subtitle content={name && nameCategory} />
       {isLoading ? (
         <Loading />
       ) : (
         <section className="SearchResults">
           {movies?.map((movie) => (
-            <Card key={movie.id} {...getCardProps(movie)} />
+            <Card key={movie.id} {...getCardProps(movie)} id={movie.id}/>
           ))}
         </section>
       )}
