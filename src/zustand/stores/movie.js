@@ -9,11 +9,11 @@ const getUrlByType = (type, param) => {
 };
 
 
-const useMovieStore = create(set => ({
+const useMovieStore = create((set, get) => ({
   getMovies: async (nameOrId, type = "name") => {
     try {
       set({
-        isLoading: false,
+        isLoading: true,
         errorMessage: "",
         hasError: false,
       });
@@ -43,18 +43,17 @@ const useMovieStore = create(set => ({
 
     try {
       set({
-        isLoading: false,
+        isLoading: true,
         errorMessage: "",
         hasError: false,
       });
-
+      
       const params = {
         url: `https://advanced-movie-search.p.rapidapi.com/movies/getdetails?movie_id=${id}`,
         headers: getHeaders(),
       };
 
-      const movieDetail = await callApi(params);
-      set({ movieDetail });
+      set({ movieDetail: get().movies.find(movie => movie.id === id)});
 
     } catch (error) {
       set({

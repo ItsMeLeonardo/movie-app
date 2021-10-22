@@ -10,4 +10,11 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(196px, 1fr));
   grid-gap: 20px;
+  justify-items: center;
+}
+
+@media screen and (min-width: 1200px) {
+  .SearchResults {
+    grid-gap: 3rem;
+  }
 }

@@ -1,7 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import shallow from "zustand/shallow";
 import Button from "../../components/Button";
+import Loading from "../../components/Loading";
 import Navbar from "../../components/NavBar/navbar";
 import useMovieStore from "../../zustand/stores/movie";
 import Stats from "./components/Stats";
@@ -9,30 +10,45 @@ import Stats from "./components/Stats";
 import "./style.css";
 
 export default function Detail() {
+  const { id } = useParams();
 
-  const {id} = useParams()
-
-  //TODO: continue here
   function getDataFromStore(state) {
     return {
       getDetails: state.getMovieDetails,
-      movieDetail: state.movieDetail,
+      movies: state.movies,
+      detail: state.movieDetail,
       isLoading: state.isLoading,
       hasError: state.hasError,
       errorMessage: state.errorMessage,
     };
   }
-  const { getDetails, movieDetail, isLoading, hasError, errorMessage } =
+
+  const { getDetails, detail, movies, isLoading, hasError, errorMessage } =
     useMovieStore(getDataFromStore, shallow);
 
+  const [movieDetail, setMovieDetail] = useState(detail);
+
   useEffect(() => {
-    getDetails(id)
-  }, [])
+    if (movies.length !== 0) {
+      const movieSearched = movies.find((movie) => movie.id.toString() === id);
+      setMovieDetail(movieSearched);
+    } else {
+      setMovieDetail(getDetails(id));
+    }
+  }, []);
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <section className="container">
       <Navbar />
-      <img className="detailImage" src={movieDetail.backdrop_path} />
+      <img
+        className="detailImage"
+        src={movieDetail.backdrop_path}
+        alt={movieDetail.title}
+      />
       <main className="main">
         <div className="detailName">
           <h1 className="titleMovie">{movieDetail.original_title}</h1>

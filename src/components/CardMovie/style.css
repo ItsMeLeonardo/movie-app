@@ -163,10 +163,11 @@
   border-radius: 15px;
   display: flex;
   overflow: hidden;
-  transition: transform 0.5s ease;
+  transition: transform 0.5s ease, box-shadow .2s ease-in-out;
 }
 .card.movie:hover {
-  transform: scale(1.05);
+  transform: scale(1.02);
+  box-shadow: .25rem 2rem 4rem hsla(226, 68%, 5%, 0.16)
 }
 
 .cardContainer.movie {

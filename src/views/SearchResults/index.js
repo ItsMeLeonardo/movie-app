@@ -22,7 +22,7 @@ export default function SearchResults() {
       errorMessage: state.errorMessage,
     };
   }
-
+  
   const { getMovies, movies, isLoading, hasError, errorMessage } =
     useMovieStore(getDataFromStore, shallow);
 
@@ -34,6 +34,7 @@ export default function SearchResults() {
       getMovies(idCategory, 'category').catch(console.log); 
     }
   }, []);
+
 
   const getCardProps = (movie) => {
     return {
@@ -56,7 +57,7 @@ export default function SearchResults() {
   return (
     <div className="SearchResultContainer">
       <Navbar />
-      <Subtitle content={name && nameCategory} />
+      <Subtitle content={name || nameCategory} />
       {isLoading ? (
         <Loading />
       ) : (

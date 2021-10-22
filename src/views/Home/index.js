@@ -8,6 +8,7 @@ import shallow from "zustand/shallow";
 import { useEffect } from "react";
 import useCategoryStore from "../../zustand/stores/category";
 import Card from "../../components/CardMovie/Card";
+import Loading from "../../components/Loading";
 
 export default function Home() {
   //getPopular movie
@@ -30,7 +31,10 @@ export default function Home() {
     getCategories();
   }, []);
 
-  console.log(categories);
+  if (isLoading) {
+    return (<Loading/>)
+  }
+
   return (
     <>
       <Navbar />
@@ -38,10 +42,10 @@ export default function Home() {
       <Subtitle content="Popular movie" />
       <CardMovie
         type="popular"
-        img={movieDetail.backdrop_path}
-        title={movieDetail.original_title}
-        description={movieDetail.overview}  
-        id={movieDetail.id}
+        img={movieDetail?.backdrop_path}
+        title={movieDetail?.original_title}
+        description={movieDetail?.overview}  
+        id={movieDetail?.id}
       />
 
       <Subtitle content="Categories" />

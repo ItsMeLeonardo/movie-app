@@ -18,7 +18,7 @@ const useCategoryStore = create((set) => ({
   getCategories: async () => {
     try {
       set({
-        isLoading: false,
+        isLoading: true,
         errorMessage: "",
         hasError: false,
       });
