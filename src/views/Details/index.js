@@ -15,26 +15,18 @@ export default function Detail() {
   function getDataFromStore(state) {
     return {
       getDetails: state.getMovieDetails,
-      movies: state.movies,
-      detail: state.movieDetail,
+      movieDetail: state.movieDetail,
       isLoading: state.isLoading,
       hasError: state.hasError,
       errorMessage: state.errorMessage,
     };
   }
 
-  const { getDetails, detail, movies, isLoading, hasError, errorMessage } =
+  const { getDetails, movieDetail, isLoading, hasError, errorMessage } =
     useMovieStore(getDataFromStore, shallow);
 
-  const [movieDetail, setMovieDetail] = useState(detail);
-
   useEffect(() => {
-    if (movies.length !== 0) {
-      const movieSearched = movies.find((movie) => movie.id.toString() === id);
-      setMovieDetail(movieSearched);
-    } else {
-      setMovieDetail(getDetails(id));
-    }
+    getDetails(id)
   }, []);
 
   if (isLoading) {

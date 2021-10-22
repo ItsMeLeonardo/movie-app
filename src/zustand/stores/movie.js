@@ -48,12 +48,18 @@ const useMovieStore = create((set, get) => ({
         hasError: false,
       });
       
-      const params = {
-        url: `https://advanced-movie-search.p.rapidapi.com/movies/getdetails?movie_id=${id}`,
-        headers: getHeaders(),
-      };
-      const movieDetail = await callApi(params)
-      set({ movieDetail } );
+      if (get().movies.length !== 0) {
+        const movieDetail = get().movies.find((movie) => movie.id.toString() === id);
+        set({ movieDetail } );
+        
+      } else {
+        const params = {
+          url: `https://advanced-movie-search.p.rapidapi.com/movies/getdetails?movie_id=${id}`,
+          headers: getHeaders(),
+        };
+        const movieDetail = await callApi(params)  
+        set({ movieDetail } );
+      }
 
     } catch (error) {
       set({
