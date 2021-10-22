@@ -9,6 +9,7 @@ import "./style.css";
 import { useEffect } from "react";
 import Loading from "../../components/Loading";
 import Error from "../../components/Error";
+import Button from "../../components/Button";
 
 export default function SearchResults() {
   const { name, idCategory, nameCategory } = useParams();
@@ -18,18 +19,21 @@ export default function SearchResults() {
       getMovies: state.getMovies,
       movies: state.movies,
       isLoading: state.isLoading,
+      getNextPage: state.nextPage,
       hasError: state.hasError,
       errorMessage: state.errorMessage,
     };
   }
   
-  const { getMovies, movies, isLoading, hasError, errorMessage } =
+  const { getMovies, movies, isLoading, hasError, errorMessage, getNextPage } =
     useMovieStore(getDataFromStore, shallow);
 
   useEffect(() => {
+    //search by name
     if (name) {
       getMovies(name).catch(console.log);
     }
+    //search by category
     if (idCategory && nameCategory) {
       getMovies(idCategory, 'category').catch(console.log); 
     }
@@ -48,6 +52,15 @@ export default function SearchResults() {
     };
   };
 
+  const handleNextPage = () => {
+    if (name) {
+      getNextPage(name).catch(console.log);
+    }
+    if (idCategory && nameCategory) {
+      getNextPage(idCategory, 'category').catch(console.log); 
+    }
+  }
+
   if (hasError) {
     return (
       <Error message={errorMessage}/>
@@ -61,12 +74,13 @@ export default function SearchResults() {
       {isLoading ? (
         <Loading />
       ) : (
-        <section className="SearchResults">
+        <section className="SearchResults" >
           {movies?.map((movie) => (
             <Card key={movie.id} {...getCardProps(movie)} id={movie.id}/>
           ))}
         </section>
       )}
+      <Button content="next page" type='Primary' normalBtn={true} getNextPage={handleNextPage} />
     </div>
   );
 }
