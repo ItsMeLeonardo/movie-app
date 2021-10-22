@@ -52,8 +52,8 @@ const useMovieStore = create((set, get) => ({
         url: `https://advanced-movie-search.p.rapidapi.com/movies/getdetails?movie_id=${id}`,
         headers: getHeaders(),
       };
-
-      set({ movieDetail: get().movies.find(movie => movie.id === id)});
+      const movieDetail = await callApi(params)
+      set({ movieDetail } );
 
     } catch (error) {
       set({
