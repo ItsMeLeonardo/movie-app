@@ -21,11 +21,11 @@ import "./style.css";
 const getCardProps = (movie) => {
   return {
     type: "movie",
-    img: movie.poster_path,
-    forAdults: movie.adult,
-    title: movie.original_title,
-    description: movie.popularity,
-    id: movie.id,
+    img: movie?.poster_path,
+    forAdults: movie?.adult,
+    title: movie?.original_title,
+    description: movie?.popularity,
+    id: movie?.id,
     iconDescription: true,
   };
 };
@@ -92,13 +92,15 @@ function SearchResults() {
   return (
     <div className="SearchResultContainer">
       <Navbar />
-      <Subtitle content={name || nameCategory} />
+      <Subtitle
+        content={`${movies.length} results for '${name || nameCategory}'`}
+      />
       <section className="SearchResults">
         {isLoading ? (
           <Loading />
         ) : (
           movies?.map((movie) => (
-            <Card key={movie.id} {...getCardProps(movie)} id={movie.id} />
+            <Card key={movie?.id} {...getCardProps(movie)} id={movie?.id} />
           ))
         )}
       </section>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 import "../style.css";
 
@@ -14,10 +14,19 @@ function Card(props) {
     nameCategory,
   } = props;
 
+  const cardRef = useRef();
+
   const urlTypes = {
     popular: `/movie/${id}`,
     category: `/byCategory/${id}/${nameCategory}`,
     movie: `/movie/${id}`,
+  };
+
+  const handleCardError = () => {
+    cardRef.current.classList.add("hidden");
+    // (e) => {
+    //   e.target.style.display = "none";
+    // }
   };
 
   return (
@@ -25,6 +34,7 @@ function Card(props) {
       to={urlTypes[type]}
       className={`card ${type}`}
       data-title={title?.toLowerCase()}
+      ref={cardRef}
     >
       {forAdults && <i className={`cardIcon ${type}`}></i>}
 
@@ -33,6 +43,7 @@ function Card(props) {
           className={`cardImage ${type}`}
           src={img}
           alt={`thumbnail of ${title}`}
+          onError={handleCardError}
         />
       )}
 
