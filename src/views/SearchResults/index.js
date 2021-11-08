@@ -1,5 +1,8 @@
-import React, { useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
+import throttle from "just-throttle";
+
 import { useParams } from "react-router";
+import { useNearScreen } from "hooks/useNearScreen";
 import Card from "components/CardMovie/Card";
 import Navbar from "components/NavBar/navbar";
 import Subtitle from "components/Subtitle";
@@ -8,8 +11,6 @@ import shallow from "zustand/shallow";
 
 import Loading from "components/Loading";
 import Error from "components/Error";
-import Button from "components/Button";
-import { useNearScreen } from "hooks/useNearScreen";
 import "./style.css";
 
 /**
@@ -59,8 +60,12 @@ function SearchResults() {
     }
   }, []);
 
+  const { isNearScreen } = useNearScreen({
+    externalRef,
+    once: false,
+  });
+
   const handleNextPage = () => {
-    console.log("click");
     if (name) {
       nextPage(name).catch(console.log);
     }
@@ -69,10 +74,15 @@ function SearchResults() {
     }
   };
 
-  const { isNearScreen } = useNearScreen({ externalRef, once: false });
+  const throttleHandleNextPage = useCallback(
+    throttle(() => handleNextPage(), 200),
+    []
+  );
 
   useEffect(() => {
-    console.log(isNearScreen);
+    if (isNearScreen) {
+      throttleHandleNextPage();
+    }
   }, [isNearScreen]);
 
   if (hasError) {
@@ -93,12 +103,6 @@ function SearchResults() {
         )}
       </section>
       <div className="viewer" ref={externalRef} />
-      <Button
-        content="next page"
-        type="Primary"
-        normalBtn={true}
-        getNextPage={handleNextPage}
-      />
     </div>
   );
 }

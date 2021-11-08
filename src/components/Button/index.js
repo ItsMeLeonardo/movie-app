@@ -7,11 +7,10 @@ export default function Button({
   needIcon,
   location,
   normalBtn,
-  getNextPage,
 }) {
   if (normalBtn) {
     return (
-      <button className={`btn btn${type}`} onClick={getNextPage}>
+      <button className={`btn btn${type}`}>
         {content}
         {needIcon && <i className="btnIcon"></i>}
       </button>
