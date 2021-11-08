@@ -1,14 +1,23 @@
 import { Link } from "react-router-dom";
-import '../style.css'
+import "../style.css";
 
 export default function Card(props) {
-  const { type, img, forAdults, title, description, id, iconDescription, nameCategory } = props;
+  const {
+    type,
+    img,
+    forAdults,
+    title,
+    description,
+    id,
+    iconDescription,
+    nameCategory,
+  } = props;
 
   const urlTypes = {
     popular: `/movie/${id}`,
     category: `/byCategory/${id}/${nameCategory}`,
-    movie: `/movie/${id}`
-  }
+    movie: `/movie/${id}`,
+  };
 
   return (
     <Link
@@ -26,7 +35,13 @@ export default function Card(props) {
         />
       )}
 
-      <h4 className={`cardTitle ${type} ${(title?.length > 16) && 'bigTitleMovie'} `}>{title}</h4>
+      <h4
+        className={`cardTitle ${type} ${
+          title?.length > 16 && type !== "popular" && "bigTitleMovie"
+        } `}
+      >
+        {title}
+      </h4>
 
       {description && (
         <p className={`cardDescription ${type}`}>

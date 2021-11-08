@@ -29,10 +29,10 @@ export default function Home() {
 
   useEffect(() => {
     getCategories();
-  }, []);
+  }, [getCategories]);
 
   if (isLoading) {
-    return (<Loading/>)
+    return <Loading />;
   }
 
   return (
@@ -40,11 +40,12 @@ export default function Home() {
       <Navbar />
 
       <Subtitle content="Popular movie" />
+
       <CardMovie
         type="popular"
         img={movieDetail?.backdrop_path}
         title={movieDetail?.original_title}
-        description={movieDetail?.overview}  
+        description={movieDetail?.overview}
         id={movieDetail?.id}
       />
 
