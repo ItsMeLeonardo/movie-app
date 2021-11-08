@@ -1,10 +1,11 @@
+import React from "react";
 import { Link } from "react-router-dom";
 import Logo from "../Logo";
 import SearchInput from "../SearchInput";
 
 import "./style.css";
 
-export default function Navbar() {
+function Navbar() {
   return (
     <nav className="navbar">
       <Link to="/home">
@@ -15,3 +16,5 @@ export default function Navbar() {
     </nav>
   );
 }
+
+export default React.memo(Navbar);

@@ -1,7 +1,8 @@
+import React from "react";
 import { Link } from "react-router-dom";
 import "../style.css";
 
-export default function Card(props) {
+function Card(props) {
   const {
     type,
     img,
@@ -52,3 +53,7 @@ export default function Card(props) {
     </Link>
   );
 }
+
+export default React.memo(Card, (prevProps, nextProps) => {
+  return prevProps.id === nextProps.id;
+});

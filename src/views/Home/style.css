@@ -1,7 +1,7 @@
 #root {
   width: 100%;
   /* justify-content: space-around; */
-  height: 100vh;
+  /* height: 100vh; */
 }
 .Home {
   min-height: 100vh;
@@ -10,7 +10,7 @@
   justify-content: space-evenly;
   width: 100%;
   gap: 1rem;
-  margin-top: 2rem;
+  padding: 1rem;
 }
 .contentCategories {
   width: 100%;

@@ -80,9 +80,10 @@ const useMovieStore = create((set, get) => ({
   },
 
   nextPage: async (nameOrId, type = "name") => {
+    console.log("nextPage");
     try {
       set({
-        isLoading: true,
+        // isLoading: true,
         errorMessage: "",
         hasError: false,
       });
