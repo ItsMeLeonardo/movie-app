@@ -52,11 +52,15 @@
   --size: 1rem;
   width: var(--size);
   height: var(--size);
-  background-image: url('../../assets/icons/Search-small.svg');
+  background-image: url("../../assets/icons/Search-small.svg");
 }
-.inputForm.small {
-  min-width: 14.5rem;
-}
+
 .SearchInput.small {
   font-size: 12px;
+}
+
+@media screen and (min-width: 768px) {
+  .inputForm.small {
+    min-width: 18rem;
+  }
 }

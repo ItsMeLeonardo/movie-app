@@ -1,14 +1,15 @@
-import Subtitle from "../../components/Subtitle";
-import Navbar from "../../components/NavBar/navbar";
-import CardMovie from "../../components/CardMovie";
-
-import "./style.css";
-import useMovieStore from "../../zustand/stores/movie";
-import shallow from "zustand/shallow";
 import { useEffect } from "react";
-import useCategoryStore from "../../zustand/stores/category";
-import Card from "../../components/CardMovie/Card";
-import Loading from "../../components/Loading";
+import Subtitle from "components/Subtitle";
+import Navbar from "components/NavBar/navbar";
+import CardMovie from "components/CardMovie";
+
+import useMovieStore from "zustand/stores/movie";
+import shallow from "zustand/shallow";
+import useCategoryStore from "zustand/stores/category";
+import Card from "components/CardMovie/Card";
+import Loading from "components/Loading";
+import Error from "components/Error";
+import "./style.css";
 
 export default function Home() {
   //getPopular movie
@@ -34,9 +35,12 @@ export default function Home() {
   if (isLoading) {
     return <Loading />;
   }
+  if (hasError) {
+    <Error message={errorMessage} />;
+  }
 
   return (
-    <>
+    <section className="Home">
       <Navbar />
 
       <Subtitle content="Popular movie" />
@@ -61,6 +65,6 @@ export default function Home() {
           />
         ))}
       </div>
-    </>
+    </section>
   );
 }

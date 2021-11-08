@@ -1,10 +1,21 @@
 #root {
   width: 100%;
+  /* justify-content: space-around; */
   height: 100vh;
-  justify-content: space-around;
+}
+.Home {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 100%;
+  gap: 1rem;
+  margin-top: 2rem;
 }
 .contentCategories {
   width: 100%;
   display: flex;
   gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
 }

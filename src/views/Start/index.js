@@ -5,12 +5,11 @@ import Logo from "../../components/Logo";
 import SearchInput from "../../components/SearchInput";
 import useMovieStore from "../../zustand/stores/movie";
 
-
 import "./style.css";
 
-export default function Start() {
-  const staticID = 399566;
+const staticID = 399566;
 
+export default function Start() {
   const getMovie = useMovieStore((state) => state.getMovieDetails, shallow);
 
   useEffect(() => {

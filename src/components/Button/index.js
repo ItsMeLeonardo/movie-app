@@ -1,8 +1,14 @@
 import { Link } from "react-router-dom";
 import "./style.css";
 
-export default function Button({content, type, needIcon, location, normalBtn, getNextPage }) {
-  
+export default function Button({
+  content,
+  type,
+  needIcon,
+  location,
+  normalBtn,
+  getNextPage,
+}) {
   if (normalBtn) {
     return (
       <button className={`btn btn${type}`} onClick={getNextPage}>

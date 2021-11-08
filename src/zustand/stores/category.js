@@ -1,5 +1,5 @@
 import create from "zustand";
-import callApi, { getHeaders } from "../../api";
+import callApi, { getHeaders } from "api";
 
 const filterCategories = (categories) => {
   const myCategories = [

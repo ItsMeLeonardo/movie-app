@@ -26,7 +26,7 @@ export default function Detail() {
     useMovieStore(getDataFromStore, shallow);
 
   useEffect(() => {
-    getDetails(id)
+    getDetails(id);
   }, []);
 
   if (isLoading) {
@@ -45,8 +45,8 @@ export default function Detail() {
         <div className="detailName">
           <h1 className="titleMovie">{movieDetail.original_title}</h1>
           <div className="detailButtons">
-            <Button content="See trailer" type="White" />
-            <Button content="See movie" type="Secondary" />
+            <Button content="See trailer" type="White" normalBtn={true} />
+            <Button content="See movie" type="Secondary" normalBtn={true} />
           </div>
         </div>
         <div className="detailInfo">

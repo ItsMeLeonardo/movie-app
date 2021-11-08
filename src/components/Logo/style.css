@@ -2,7 +2,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: .35rem;
+  gap: 0.35rem;
+  text-decoration: none;
 }
 .logo.normal {
   margin-bottom: 2rem;
@@ -21,7 +22,7 @@
 
 .logoIcon {
   object-fit: cover;
-  background: url('../../assets/images/logo.webp') no-repeat center;
+  background: url("../../assets/images/logo.webp") no-repeat center;
 }
 .logoIcon.normal {
   --size: 58px;
@@ -32,5 +33,5 @@
   --size: 24px;
   width: var(--size);
   height: var(--size);
-  background: url('../../assets/images/logo-small.webp') no-repeat center;
+  background: url("../../assets/images/logo-small.webp") no-repeat center;
 }
