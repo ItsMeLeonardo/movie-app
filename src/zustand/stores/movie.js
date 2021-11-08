@@ -54,16 +54,18 @@ const useMovieStore = create((set, get) => ({
         hasError: false,
       });
 
-      if (get().movies.length !== 0) {
-        const movieDetail = get().movies.find(
-          (movie) => movie.id.toString() === id
-        );
+      const movieDetail = get().movies.find(
+        (movie) => movie.id.toString() === id
+      );
+      if (movieDetail) {
+        // console.log("exist");
         set({ movieDetail });
       } else {
         const params = {
           url: `https://advanced-movie-search.p.rapidapi.com/movies/getdetails?movie_id=${id}`,
           headers: getHeaders(),
         };
+        // console.log("no exist");
         const movieDetail = await callApi(params);
         set({ movieDetail });
       }
@@ -80,7 +82,6 @@ const useMovieStore = create((set, get) => ({
   },
 
   nextPage: async (nameOrId, type = "name") => {
-    console.log("nextPage");
     try {
       set({
         // isLoading: true,
