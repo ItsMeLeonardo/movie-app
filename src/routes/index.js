@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Detail from "../views/Details";
 import Home from "../views/Home";
 import SearchResults from "../views/SearchResults";
@@ -8,28 +8,26 @@ export default function Routes() {
   return (
     <Router>
       <Switch>
-        
         <Route path="/" exact>
-          <Start/>
+          <Start />
         </Route>
-        
+
         <Route path="/home" exact>
-          <Home/>
+          <Home />
         </Route>
 
         <Route path="/byCategory/:idCategory/:nameCategory" exact>
-          <SearchResults/>
+          <SearchResults />
         </Route>
 
         <Route path="/byName/:name" exact>
-          <SearchResults/>
+          <SearchResults />
         </Route>
 
         <Route path="/movie/:id" exact>
-          <Detail/>
+          <Detail />
         </Route>
-
       </Switch>
     </Router>
-  )
+  );
 }

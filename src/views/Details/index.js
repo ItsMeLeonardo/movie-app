@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import Error from "components/Error";
+import { useEffect } from "react";
 import { useParams } from "react-router";
 import shallow from "zustand/shallow";
 import Button from "../../components/Button";
@@ -31,6 +32,9 @@ export default function Detail() {
 
   if (isLoading) {
     return <Loading />;
+  }
+  if (hasError) {
+    return <Error message={errorMessage} />;
   }
 
   return (
